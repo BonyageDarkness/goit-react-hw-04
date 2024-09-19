@@ -1,13 +1,22 @@
 import PropTypes from 'prop-types';
+import Modal from 'react-modal';
+import styles from './ImageModal.module.css';
 
 const ImageModal = ({ isOpen, onRequestClose, image }) => {
-    if (!isOpen) return null;
-
     return (
-        <div className="modal">
-            <button onClick={onRequestClose}>Close</button>
-            <img src={image.urls.regular} alt={image.alt_description} />
-        </div>
+        <Modal
+            isOpen={isOpen}
+            onRequestClose={onRequestClose}
+            contentLabel="Image Modal"
+            className={styles['modal']}
+            overlayClassName={styles['overlay']}
+        >
+            <img
+                src={image.urls.regular}
+                alt={image.alt_description}
+                className={styles['image']}
+            />
+        </Modal>
     );
 };
 
@@ -17,7 +26,7 @@ ImageModal.propTypes = {
     image: PropTypes.shape({
         urls: PropTypes.shape({
             regular: PropTypes.string.isRequired,
-        }).isRequired,
+        }),
         alt_description: PropTypes.string,
     }).isRequired,
 };
