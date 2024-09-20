@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Toaster } from 'react-hot-toast';
 import SearchBar from './components/SearchBar/SearchBar';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import Loader from './components/Loader/Loader';
 import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 import ImageModal from './components/ImageModal/ImageModal';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
+
 import './App.css';
 
 const App = () => {
@@ -71,8 +73,9 @@ const App = () => {
 
     return (
         <div>
+            <Toaster position="top-right" reverseOrder={false} />
             <SearchBar onSubmit={handleSearch} />
-            {error && <ErrorMessage message={error} />}{' '}
+            {error && <ErrorMessage message={error} />}
             {!error && (
                 <>
                     <ImageGallery images={images} onImageClick={openModal} />
